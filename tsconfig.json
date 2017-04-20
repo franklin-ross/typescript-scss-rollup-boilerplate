@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "es2015",
+    "outDir": "dist/compiled",
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "removeComments": false,
+    "strictNullChecks": true,
+    "pretty": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

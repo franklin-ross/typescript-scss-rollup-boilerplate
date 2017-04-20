@@ -1,0 +1,2 @@
+* Typescript because I can't imagine starting a new project without it.
+* SASS because many editors have syntax support for it. I'd love to use the CSSNext PostCSS plugin, but having good editor tooling wins out.
