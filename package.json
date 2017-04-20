@@ -5,32 +5,40 @@
   "scripts": {
     "clean:dist": "rimraf dist",
     "clean:modules": "rimraf node_modules",
+    "clean:files": "rimraf npm-debug.log*",
     "clean": "run-p clean:*",
-
     "watch:typescript": "tsc -w",
-    "watch:scss": "node-sass src/ --output dist/compiled --source-map true -w",
+    "watch:scss": "node-sass src/ -o dist/compiled --source-map true -w -r",
+    "prewatch:rollup": "run-p build:scss build:typescript",
     "watch:rollup": "rollup -c -w",
-
+    "watch": "run-p watch:*",
     "build:typescript": "tsc",
-    "build:scss": "node-sass src/ --output dist/compiled --source-map true",
+    "build:scss": "node-sass src/ -o dist/compiled --source-map true",
     "build:rollup": "rollup -c",
     "build": "npm-run-all  --parallel build:typescript build:scss  --serial build:rollup",
-
-    "test": "mocha"
+    "test": "mocha --require mocha.config.js src/**/*.test.ts",
+    "test-watch": "mocha --require mocha.config.js --watch-extensions ts -w src/**/*.test.ts"
   },
   "devDependencies": {
-    "typescript": "^2.2.2",
-    "rollup": "^0.41.6",
-    "rollup-plugin-node-resolve":"^3.0.0",
-    "rollup-plugin-commonjs":"^8.0.2",
-    "rollup-plugin-postcss":"^0.4.1",
-    "rollup-plugin-extension-mapper": "franklin-ross/rollup-plugin-extension-mapper",
-    "node-sass": "^4.5.2",
-    "cssnano": "^3.10.0",
+    "@types/chai": "^3.5.1",
+    "@types/mocha": "^2.2.41",
     "autoprefixer": "^6.7.7",
+    "chai": "^3.5.0",
+    "cssnano": "^3.10.0",
+    "mocha": "^3.2.0",
+    "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
-    "rimraf":"^2.6.1"
-  },"dependencies": {
+    "rimraf": "^2.6.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-extension-mapper": "franklin-ross/rollup-plugin-extension-mapper",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-postcss": "^0.4.1",
+    "rollup-watch": "^3.2.2",
+    "ts-node": "^3.0.2",
+    "typescript": "^2.2.2"
+  },
+  "dependencies": {
     "no-op": "^1.0.3"
   },
   "keywords": [
