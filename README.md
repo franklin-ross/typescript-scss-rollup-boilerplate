@@ -26,3 +26,8 @@ We'll see if I miss some of the fancy stuff in the others.
 ### Mocha and Chai
 
 They're popular, but that's pretty much my only attachment.
+
+
+### File locality
+
+I'm a big fan of colocating related files, so *source.ts* will have *source.scss* and *source.test.ts* next to it.
