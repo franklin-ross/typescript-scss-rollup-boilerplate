@@ -1,7 +1,7 @@
 {
-  "name": "typescript-rollup-boilerplate",
+  "name": "typescript-scss-rollup-boilerplate",
   "version": "1.0.0",
-  "description": "Boilerplate for a working typescript project using rollup for module packaging",
+  "description": "Boilerplate for a working Typescript project with SCSS and Rollup for bundling",
   "scripts": {
     "clean:dist": "rimraf dist",
     "clean:modules": "rimraf node_modules",
@@ -43,8 +43,10 @@
   },
   "keywords": [
     "typescript",
-    "tsc",
+    "scss",
     "rollup",
+    "mocha",
+    "chai",
     "boilerplate",
     "quickstart"
   ],
