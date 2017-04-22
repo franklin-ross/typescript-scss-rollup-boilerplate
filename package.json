@@ -3,21 +3,21 @@
   "version": "1.0.0",
   "description": "Boilerplate for a working Typescript project with SCSS and Rollup for bundling",
   "scripts": {
-    "clean:dist": "rimraf dist",
-    "clean:modules": "rimraf node_modules",
-    "clean:files": "rimraf npm-debug.log*",
-    "clean": "run-p clean:*",
+    "clean-modules": "rimraf node_modules",
+    "clean": "rimraf dist build npm-debug.log*",
     "watch:typescript": "tsc -w",
-    "watch:scss": "node-sass src/ -o dist/compiled --source-map true -w -r",
-    "prewatch:rollup": "run-p build:scss build:typescript",
-    "watch:rollup": "rollup -c -w",
+    "watch:scss": "node-sass src/ -o build/ --source-map true -w -r",
+    "watch:bundle": "rollup -c -w --environment entry:build/main.js,dest:dist/bundle.js",
+    "watch:vendor-styles": "rollup -c -w --environment entry:build/vendor-styles.css,dest:dist/vendor-styles.css",
     "watch": "run-p watch:*",
     "build:typescript": "tsc",
-    "build:scss": "node-sass src/ -o dist/compiled --source-map true",
-    "build:rollup": "rollup -c",
-    "build": "npm-run-all  --parallel build:typescript build:scss  --serial build:rollup",
+    "build:scss": "node-sass src/ -o build/ --source-map true",
+    "build:bundle": "rollup -c --environment entry:build/main.js,dest:dist/bundle.js",
+    "build:vendor-styles": "rollup -c --environment entry:build/vendor-styles.css,dest:dist/vendor-styles.css",
+    "build": "npm-run-all  --parallel build:typescript build:scss  --parallel build:bundle build:vendor-styles",
     "test": "mocha --require mocha.config.js src/**/*.test.ts",
-    "test-watch": "mocha --require mocha.config.js --watch-extensions ts -w src/**/*.test.ts"
+    "test-watch": "mocha --require mocha.config.js --watch-extensions ts -w src/**/*.test.ts",
+    "start": "ws"
   },
   "devDependencies": {
     "@types/chai": "^3.5.1",
@@ -25,21 +25,26 @@
     "autoprefixer": "^6.7.7",
     "chai": "^3.5.0",
     "cssnano": "^3.10.0",
+    "local-web-server": "^1.2.7",
     "mocha": "^3.2.0",
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
+    "postcss-import": "^9.1.0",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.6",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-extension-mapper": "franklin-ross/rollup-plugin-extension-mapper",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-postcss": "^0.4.1",
+    "rollup-plugin-uglify": "^1.0.2",
     "rollup-watch": "^3.2.2",
     "ts-node": "^3.0.2",
-    "typescript": "^2.2.2"
+    "typescript": "^2.2.2",
+    "uglify-js": "^2.8.22"
   },
   "dependencies": {
-    "no-op": "^1.0.3"
+    "no-op": "^1.0.3",
+    "normalize.css": "^6.0.0"
   },
   "keywords": [
     "typescript",

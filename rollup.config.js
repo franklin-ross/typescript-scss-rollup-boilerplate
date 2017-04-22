@@ -1,13 +1,16 @@
 import resolveNodeModules from "rollup-plugin-node-resolve";
 import commonjsToEs6 from "rollup-plugin-commonjs";
 import extensionMapper from "rollup-plugin-extension-mapper";
+import uglify from 'rollup-plugin-uglify';
+
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
+import inlineCssImports from 'postcss-import';
 
 export default {
-  entry: "dist/compiled/main.js",
-  dest: "dist/bundle.js",
+  entry: process.env.entry,
+  dest: process.env.dest,
   moduleName: "app",
   format: "iife",
   sourceMap: true,
@@ -40,10 +43,14 @@ export default {
     //For error: "thing" is not exported by module, see: https://github.com/rollup/rollup-plugin-commonjs#custom-named-exports
     commonjsToEs6(),
 
-    //Bundle any css files imported in scripts and apply autoprefixer and a minimiser.
+    uglify({
+      configFile: "uglify.json"
+    }),
+
+    //Bundle any css files using postcss.
     postcss({
       plugins: [
-        autoprefixer(), cssnano()
+        inlineCssImports(), autoprefixer(), cssnano()
       ],
       sourceMap: true,
       extract: true

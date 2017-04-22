@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "es2015",
-    "outDir": "dist/compiled",
+    "outDir": "build/",
     "sourceMap": true,
     "alwaysStrict": true,
     "importHelpers": true,
@@ -19,6 +19,7 @@
   "exclude": [
     "node_modules",
     "dist",
+    "build",
     "src/**/*.test.ts"
   ]
 }
