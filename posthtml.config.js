@@ -31,7 +31,9 @@ const opts = require("nomnom")
       required: true,
       help: 'Path to a JSON file, or a JSON object, with format { "path": "new-path" }',
    })
-   .parse([...process.argv, ..."-i src/**/*.html -o dist/ -m dist/manifest.json --watch".split(" ")]);
+   .parse(process.argv);
+   //.parse([...process.argv, ..."-i src/**/*.html -o dist/ -m dist/manifest.json --watch".split(" ")]); //Testing
+   
 
 if (typeof opts.pathMap !== "string" && typeof opts.pathMap !== "object") {
     throw new Error("path-map option must be a path to a JSON file, or a JSON object.");
@@ -51,6 +53,7 @@ const parser = posthtml([
 
 console.info("posthtml start");
 
+let configWatcher;
 const inputWatcher = chokidar.watch(opts.include);
 inputWatcher.changeAll = function () {
   const watcher = this;
@@ -61,18 +64,19 @@ inputWatcher.changeAll = function () {
   });
 };
 
-let waitForExit = opts.watch ? [] : null;
+let waitForExit = opts.watch ? null : [];
 inputWatcher
   .on('add', processFile)
   .on('change', processFile)
   .on('ready', () => {
     if (opts.watch) {
       if (typeof opts.pathMap === "string") {
-        const configWatcher = chokidar.watch(opts.pathMap);
+        configWatcher = chokidar.watch(opts.pathMap);
         configWatcher.on("change", () => inputWatcher.changeAll());
       }
     } else {
       inputWatcher.close();
+      if (configWatcher) { configWatcher.close(); }
       Promise.all(waitForExit).then(() => exit(), () => exit());
     }
     waitForExit = null;

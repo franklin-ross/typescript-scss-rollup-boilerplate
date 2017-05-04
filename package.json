@@ -20,8 +20,8 @@
     "build:source-maps": "sorcery -i dist/**/*.map",
     "build:html": "node posthtml.config.js -i src/**/*.html -o dist/ -m dist/manifest.json",
     "build": "npm-run-all  --parallel build:typescript build:scss  --parallel build:bundle build:vendor-styles  --serial build:hashed-files build:html",
-    "test": "mocha --require mocha.config.js src/**/*.test.ts",
-    "test-watch": "mocha --require mocha.config.js --watch-extensions ts -w src/**/*.test.ts",
+    "test": "mocha  --reporter mocha-reporter-vscode  --require mocha.config.js src/**/*.test.ts",
+    "test-watch": "mocha  --reporter mocha-reporter-vscode  --require mocha.config.js  --watch-extensions ts -w src/**/*.test.ts",
     "start": "ws"
   },
   "devDependencies": {
@@ -31,10 +31,11 @@
     "chai": "^3.5.0",
     "chokidar-cli": "^1.2.0",
     "cssnano": "^3.10.0",
+    "glob": "^7.1.1",
     "hashly": "^0.5.0",
     "local-web-server": "^1.2.7",
     "mocha": "^3.2.0",
-    "glob": "^7.1.1",
+    "mocha-reporter-vscode": "https://github.com/franklin-ross/mocha-reporter-vscode",
     "node-sass": "^4.5.2",
     "nomnom": "^1.8.1",
     "npm-run-all": "^4.0.2",
