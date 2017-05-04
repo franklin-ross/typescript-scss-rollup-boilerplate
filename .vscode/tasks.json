@@ -17,12 +17,9 @@
       ]
     },
     {
-      "taskName": "watch",
-      "args": ["run", "watch"],
-      "isBackground": true,
-      "problemMatcher": [
-        "$tsc"
-      ]
+      "taskName": "start",
+      "args": ["run", "ws"],
+      "isBackground": true
     },
     {
       "taskName": "test",
@@ -41,10 +38,12 @@
       }
     },
     {
-      "taskName": "test-watch",
-      "args": ["run", "test-watch"],
+      "taskName": "watch and test",
+      "args": ["run", "watch-and-test"],
       "isBackground": true,
-      "problemMatcher": {
+      "problemMatcher": [
+      "$tsc",
+      {
         "owner": "mocha",
         "fileLocation": [ "absolute" ],
         "pattern": {
@@ -58,7 +57,7 @@
           "beginsPattern": "^mocha start$",
           "endsPattern": "^mocha end"
         }
-      }
+      }]
     }
   ]
 }

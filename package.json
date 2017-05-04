@@ -12,6 +12,7 @@
     "watch:hashed-files": "chokidar \"build/bundled/**/!(*.map)\" -c \"hashly  --exclude *.map  --manifest-format json-object  build/bundled  dist\"",
     "watch:html": "node posthtml.config.js -i src/**/*.html -o dist/ -m dist/manifest.json --watch",
     "watch": "run-p watch:*",
+    "watch-and-test": "run-p watch:* test-watch",
     "build:typescript": "tsc",
     "build:scss": "node-sass src/ -o build/compiled/ --source-map true",
     "build:bundle": "rollup -c --environment entry:build/compiled/main.js,dest:build/bundled/bundle.js",
