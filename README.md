@@ -4,9 +4,9 @@ A boilerplate project using Typescript and SCSS, with Rollup for bundling and mi
 
 ## Design Decisions
 
-### Multistage Build over full Rollup pipeline
+### Multi-stage Build over full Rollup pipeline
 
- Build is multistage in that it uses individual compilers like tsc and node-sass for compiling ts and scss source from *src/* into js and css in *dist/compiled*, then uses Rollup for bundling and minifying. Reasons:
+ Build is multi-stage in that it uses individual compilers like tsc and node-sass for compiling ts and scss source from *src/* into js and css in *dist/compiled*, then uses Rollup for bundling and minifying. Reasons:
  
  * It avoids the watch [issues in typescript projects with no-emit types using Rollup plugins](https://github.com/rollup/rollup-plugin-typescript/issues/28).
  * It provides intermediate artefacts that can eyeballed.
@@ -30,4 +30,4 @@ They're popular, but that's pretty much my only attachment.
 
 ### File locality
 
-I'm a big fan of colocating related files, so *source.ts* will have *source.scss* and *source.test.ts* next to it.
+I'm a big fan of co-locating related files, so *source.ts* will have *source.scss* and *source.test.ts* next to it.

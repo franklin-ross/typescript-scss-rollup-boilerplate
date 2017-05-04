@@ -3,3 +3,5 @@ dist
 build
 .git
 npm-debug.log*
+*.log
+yarn.lock

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "es2015",
-    "outDir": "build/",
+    "outDir": "build/compiled/",
     "sourceMap": true,
     "alwaysStrict": true,
     "importHelpers": true,
